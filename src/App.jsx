@@ -18,7 +18,7 @@ const Home = () => (
     <p>
       Lüks kumaşlardan çevre dostu malzemelere kadar, moda, ev dekorasyonu ve
       teknik tekstiller dahil olmak üzere çeşitli endüstriler için geniş bir
-      yelpazede tekstil çözümleri sunuyoruz.
+      yelpazede tekstil çözümleri sunuyoruz..
     </p>
   </div>
 );
