@@ -208,20 +208,7 @@ function App() {
                 <p>Telefon: +90 (123) 456-7890</p>
                 <p>Adres: 123 Ana Cadde, Şehir, Ülke</p>
               </div>
-              <div className="footer-section">
-                <h3>Hızlı Bağlantılar</h3>
-                <ul>
-                  <li>
-                    <Link to="/privacy-policy">Gizlilik Politikası</Link>
-                  </li>
-                  <li>
-                    <Link to="/terms-of-service">Kullanım Şartları</Link>
-                  </li>
-                  <li>
-                    <Link to="/faq">SSS</Link>
-                  </li>
-                </ul>
-              </div>
+              {/* Removed "Hızlı Bağlantılar" section */}
             </div>
             <div className="footer-bottom">
               <p>&copy; 2023 Winteks. Tüm hakları saklıdır.</p>
