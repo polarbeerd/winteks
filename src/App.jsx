@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
 import "./App.css";
 
@@ -126,12 +126,28 @@ function App() {
     setMenuOpen(!menuOpen);
   };
 
+  const closeMenu = () => {
+    setMenuOpen(false);
+  };
+
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.classList.add("menu-open");
+    } else {
+      document.body.classList.remove("menu-open");
+    }
+
+    return () => {
+      document.body.classList.remove("menu-open");
+    };
+  }, [menuOpen]);
+
   return (
     <Router>
       <div className="app">
         <header className="sticky-header">
           <div className="logo">
-            <Link to="/">
+            <Link to="/" onClick={closeMenu}>
               <img src="/winteks_blue_logo_v2_resized.png" alt="Winteks Logo" />
             </Link>
           </div>
@@ -146,70 +162,73 @@ function App() {
           <nav className={menuOpen ? "open" : ""}>
             <ul>
               <li>
-                <Link to="/" onClick={toggleMenu}>
+                <Link to="/" onClick={closeMenu}>
                   Ana Sayfa
                 </Link>
               </li>
               <li>
-                <Link to="/about" onClick={toggleMenu}>
+                <Link to="/about" onClick={closeMenu}>
                   Hakkımızda
                 </Link>
               </li>
               <li>
-                <Link to="/works" onClick={toggleMenu}>
+                <Link to="/works" onClick={closeMenu}>
                   Çalışmalarımız
                 </Link>
               </li>
               <li>
-                <Link to="/contact" onClick={toggleMenu}>
+                <Link to="/contact" onClick={closeMenu}>
                   İletişim
                 </Link>
               </li>
             </ul>
           </nav>
         </header>
-        <main>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/works" element={<Works />} />
-            <Route path="/contact" element={<Contact />} />
-          </Routes>
-        </main>
-        <footer className="site-footer">
-          <div className="footer-content">
-            <div className="footer-section">
-              <h3>Hakkımızda</h3>
-              <p>
-                Winteks, çeşitli endüstriler için yenilikçi çözümler sunan lider
-                bir şirkettir.
-              </p>
+        <div className="content-wrapper">
+          <main>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/works" element={<Works />} />
+              <Route path="/contact" element={<Contact />} />
+            </Routes>
+          </main>
+          <footer className="site-footer">
+            <div className="footer-content">
+              <div className="footer-section">
+                <h3>Hakkımızda</h3>
+                <p>
+                  Winteks, çeşitli endüstriler için yenilikçi çözümler sunan
+                  lider bir şirkettir.
+                </p>
+              </div>
+              <div className="footer-section">
+                <h3>İletişim Bilgileri</h3>
+                <p>E-posta: info@winteks.com</p>
+                <p>Telefon: +90 (123) 456-7890</p>
+                <p>Adres: 123 Ana Cadde, Şehir, Ülke</p>
+              </div>
+              <div className="footer-section">
+                <h3>Hızlı Bağlantılar</h3>
+                <ul>
+                  <li>
+                    <Link to="/privacy-policy">Gizlilik Politikası</Link>
+                  </li>
+                  <li>
+                    <Link to="/terms-of-service">Kullanım Şartları</Link>
+                  </li>
+                  <li>
+                    <Link to="/faq">SSS</Link>
+                  </li>
+                </ul>
+              </div>
             </div>
-            <div className="footer-section">
-              <h3>İletişim Bilgileri</h3>
-              <p>E-posta: info@winteks.com</p>
-              <p>Telefon: +90 (123) 456-7890</p>
-              <p>Adres: 123 Ana Cadde, Şehir, Ülke</p>
+            <div className="footer-bottom">
+              <p>&copy; 2023 Winteks. Tüm hakları saklıdır.</p>
             </div>
-            <div className="footer-section">
-              <h3>Hızlı Bağlantılar</h3>
-              <ul>
-                <li>
-                  <Link to="/privacy-policy">Gizlilik Politikası</Link>
-                </li>
-                <li>
-                  <Link to="/terms-of-service">Kullanım Şartları</Link>
-                </li>
-                <li>
-                  <Link to="/faq">SSS</Link>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className="footer-bottom">
-            <p>&copy; 2023 Winteks. Tüm hakları saklıdır.</p>
-          </div>
-        </footer>
+          </footer>
+        </div>
+        {menuOpen && <div className="menu-overlay" onClick={toggleMenu}></div>}
       </div>
     </Router>
   );
