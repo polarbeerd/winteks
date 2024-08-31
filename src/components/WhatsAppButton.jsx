@@ -1,7 +1,6 @@
 const WhatsAppButton = () => {
-  const phoneNumber = "905123456789"; // Replace with your actual WhatsApp number
-  const message = "Merhaba, bilgi almak istiyorum."; // Replace with your default message
-
+  const phoneNumber = "905397486886"; // Replace with your actual WhatsApp number
+  const message = "ily";
   const handleClick = () => {
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
       message
