@@ -413,3 +413,31 @@ body.menu-open {
     display: none;
   }
 }
+
+.whatsapp-button {
+  display: none; /* Hidden by default */
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #25d366;
+  color: white;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  font-size: 30px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transition: background-color 0.3s ease;
+  z-index: 1000;
+}
+
+.whatsapp-button:hover {
+  background-color: #128c7e;
+}
+
+@media screen and (max-width: 768px) {
+  .whatsapp-button {
+    display: block; /* Show only on mobile */
+  }
+}
