@@ -49,7 +49,7 @@ main {
 }
 
 .logo img {
-  height: 70px; /* Reduced from 80px */
+  max-height: 40px; /* Adjust this value as needed */
   width: auto;
   object-fit: cover;
   object-position: center;

@@ -1,5 +1,13 @@
 import { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Routes,
+  useLocation,
+} from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
+import AnimatedPage from "./components/AnimatedPage";
 import "./App.css";
 
 const Home = () => (
@@ -148,7 +156,7 @@ function App() {
         <header className="sticky-header">
           <div className="logo">
             <Link to="/" onClick={closeMenu}>
-              <img src="/winteks_blue_logo_v2_resized.png" alt="Winteks Logo" />
+              <img src="/logo.png" alt="Winteks Logo" />
             </Link>
           </div>
           <button
@@ -186,12 +194,7 @@ function App() {
         </header>
         <div className="content-wrapper">
           <main>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/works" element={<Works />} />
-              <Route path="/contact" element={<Contact />} />
-            </Routes>
+            <AnimatedRoutes />
           </main>
           <footer className="site-footer">
             <div className="footer-content">
@@ -218,6 +221,49 @@ function App() {
         {menuOpen && <div className="menu-overlay" onClick={toggleMenu}></div>}
       </div>
     </Router>
+  );
+}
+
+function AnimatedRoutes() {
+  const location = useLocation();
+
+  return (
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        <Route
+          path="/"
+          element={
+            <AnimatedPage>
+              <Home />
+            </AnimatedPage>
+          }
+        />
+        <Route
+          path="/about"
+          element={
+            <AnimatedPage>
+              <About />
+            </AnimatedPage>
+          }
+        />
+        <Route
+          path="/works"
+          element={
+            <AnimatedPage>
+              <Works />
+            </AnimatedPage>
+          }
+        />
+        <Route
+          path="/contact"
+          element={
+            <AnimatedPage>
+              <Contact />
+            </AnimatedPage>
+          }
+        />
+      </Routes>
+    </AnimatePresence>
   );
 }
 
